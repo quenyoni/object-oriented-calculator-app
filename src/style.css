@@ -1,0 +1,346 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #3178c6aa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+:root{
+  --main-bg:hsl(222, 26%, 31%);
+  --output-bg: hsl(224, 36%, 15%) ;
+  --keys-bg:hsl(223, 31%, 20%);
+  --btn-primary-bg:hsl(30, 25%, 89%);
+  --btn-secondary-bg:hsl(225, 21%, 49%);
+  --btn-tertiary-bg:hsl(6, 63%, 50%);
+  --btn-size:5rem;
+  --btn-shadow-color:hsl(28, 16%, 65%);
+  --btn-sec-shadow-color:hsl(224, 28%, 35%) ;
+  --btn-ter-shadow-color:hsl(6, 70%, 34%) ;
+  --opacity:0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 700;
+}
+body{
+  font-size: 1em;
+  background:var(--main-bg);
+  color:#fff;
+  
+  
+ 
+/* - Very dark desaturated blue (toggle background, keypad background): hsl(223, 31%, 20%)
+- Very dark desaturated blue (screen background): hsl(224, 36%, 15%) */
+  
+}
+
+/* - Desaturated dark blue (key background): hsl(225, 21%, 49%)
+- Desaturated dark blue (key shadow): hsl(224, 28%, 35%)
+
+- Red (key background, toggle): hsl(6, 63%, 50%)
+- Dark red (key shadow): hsl(6, 70%, 34%) */
+
+
+
+
+
+.calculator__container{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  gap:1rem;
+  
+
+}
+
+.header{
+  
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+
+  
+  
+}
+
+.header> span{
+  font-size: 2rem;
+}
+
+.output{
+  grid-column: 1 / -1;
+ font-size: 2rem;
+  display: flex;
+  border-radius: 10px;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 1rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  background: var(--output-bg);
+  position: relative;
+  
+  overflow: hidden;
+}
+
+.operands{
+ 
+  position: relative;
+
+}
+
+[data-secondary-operand]{
+  background: red;
+  width: 80px;
+  /* position: absolute; */
+  z-index:10;
+  font-size: 1.2rem;
+  top:-25%;
+  left:5%;
+  opacity: 0;
+  transition :opacity 250ms ease-in-out ;
+  
+ 
+}
+[data-secondary-operand].active{
+  top:25%;
+  opacity: 1;
+}
+
+
+.button__wrapper{
+  padding: 1rem;
+  display: grid;
+  gap:0.5rem;
+  border-radius: 10px;
+  grid-template-columns: repeat(4, var(--btn-size));
+  grid-template-rows: minmax(var(--btn-size), auto) repeat(4, var(--btn-size));
+ background: var(--keys-bg);
+}
+
+.button__wrapper > button{
+  font-size: 2rem;
+  outline:none;
+  border:none;
+  color: inherit;
+  background: var(--btn-primary-bg);
+  border-radius: 10px;
+  box-shadow:  0 3px 0 var(--btn-shadow-color);
+}
+
+.button__wrapper > button:hover,
+.button__wrapper > button:active{
+  /* background: #fff; */
+}
+
+
+button.btn--secondary{
+  background: var(--btn-secondary-bg);
+  box-shadow:  0 3px 0 var(--btn-sec-shadow-color);
+}
+
+button.btn--secondary:hover,
+button.btn--tertiary:hover
+{
+opacity: 0.5;
+}
+
+button.btn--tertiary{
+  background: var(--btn-tertiary-bg);
+  box-shadow:  0 3px 0 var(--btn-ter-shadow-color);
+}
+
+.span__two{
+  grid-column: span 2;
+}
+
+.theme__switch{
+  display: flex;
+  align-items: center;
+  gap:0.5rem;
+  
+}
+
+.theme__switch> span:first-child{
+  font-size: .75rem;
+  letter-spacing: 2spx;
+  
+}
+
+.tw-toggle {
+  background:var(--keys-bg);
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  height: 1.95rem;
+  justify-content: space-between;
+  padding: 2px 3px;
+  border-radius: 20px;
+  position:relative;
+  
+}
+
+.tw-toggle label {
+  text-align: center;
+  font-family: sans-serif;
+  display: inline-block;
+  color: #95A5A6;
+  position:relative;
+  z-index:2;
+  margin: 0;
+  text-align: center;
+  padding: 2px 3px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.tw-toggle input {
+  /* display: none; */
+  /* position: absolute; */
+  z-index: 3;
+  opacity: var(--opacity);
+  cursor: pointer;
+  
+}
+
+.tw-toggle span {
+  height: 1.25rem;
+  width: 1.25rem;
+  line-height: 21px;
+  border-radius: 50%;
+  background:#fff;
+  display:block;
+  position:absolute;
+  left: 22px;
+  top: 6px;
+  transition:all 0.3s ease-in-out;
+}
+
+.tw-toggle input[value="false"]:checked ~ span{
+  background:#e74c3c;
+  left:2px;
+  color:#fff;
+}
+
+.tw-toggle input[value="true"]:checked ~ span{
+  background:#e74c3c;
+  left:55px;
+}
+.tw-toggle input[value="-1"]:checked ~ span{
+  background:#e74c3c;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tw-toggle input[value="false"]:checked + label,.tw-toggle input[value="true"]:checked + label{
+  color:#fff;
+}
+.tw-toggle input[value="-1"]:checked + label{
+  color:#fff;
+}
+
+
+
+/* - Desaturated dark blue (key background): hsl(225, 21%, 49%)
+- Desaturated dark blue (key shadow): hsl(224, 28%, 35%)
+
+- Red (key background, toggle): hsl(6, 63%, 50%)
+- Dark red (key shadow): hsl(6, 70%, 34%)
+
+- Light grayish orange (key background): hsl(30, 25%, 89%)
+- Grayish orange (key shadow): hsl(28, 16%, 65%) */
